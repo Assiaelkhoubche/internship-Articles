@@ -7,16 +7,16 @@ import {FaBars,FaXmark} from "react-icons/fa6";
 import { IoLogoFacebook } from "react-icons/io5";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
-
+import AuthButton from './AuthButton';
 const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen]=useState(false);
   const [isLogin, setIsLogin]=useState(false)
 
-  const logoutAndLogin=()=>{
-       localStorage.clear();
-       return <Navigate to='/login'/>
-  }
+  // const logoutAndLogin=()=>{
+  //      localStorage.clear();
+  //      return <Navigate to='/login'/>
+  // }
   
   const registerAndLogout=()=>{
      localStorage.clear();
@@ -73,7 +73,7 @@ const Navbar = () => {
                   <AiFillTwitterCircle />
               </Link>
            
-            <div className='text-white font-medium'>
+            {/* <div className='text-white font-medium'>
                     <Link to='/register'>
                         <button 
                             onClick={registerAndLogout}
@@ -82,7 +82,8 @@ const Navbar = () => {
                                 {!isLogin?'sign up':'logout'}
                         </button>
                     </Link>
-            </div>
+            </div> */}
+            <AuthButton />
 
            </div>
 
