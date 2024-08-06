@@ -1,0 +1,11 @@
+import React from 'react'
+
+const Register = () => {
+  return (
+    <div className='py-40'>
+       registration
+    </div>
+  )
+}
+
+export default Register

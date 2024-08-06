@@ -1,0 +1,9 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.active{
+    @apply text-n-3 underline underline-offset-4
+}
+.h1{
+    @apply text-5xl lg:text-7xl leading-snug font-bold mb-5
+}
