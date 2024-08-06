@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {api} from '../api'
+import api from '../api'
 
 
 
@@ -16,7 +16,7 @@ const BlogPage = () => {
         
         try{
             const res= await api.get('/api/articles/');
-            console.log('dataaa',res.data)
+            console.log('response', res);
             setArticles(res.data);
 
         }catch(err){
@@ -28,7 +28,9 @@ const BlogPage = () => {
 
   return (
     <div>
-       blog page
+       {articles.map((item,index)=>(
+         <p key={index}>{item.title}</p>
+       ))}
     </div>
   )
 

@@ -10,13 +10,13 @@ const ProtectedRoute = ({children}) => {
     const [isAuthorized, setIsAuthorized]=useState(null);
     
     useEffect(()=>{
-
+        auth().catch(()=>setIsAuthorized(false))
     })
 
     const refreshToken = async ()=>{
          const refreshToken=localeStorage.get(REFRESH_TOKEN);
         try{
-            const res=await api.post('api/token/refresh/',{
+            const res=await api.post('/api/token/refresh/',{
                 refresh:refreshToken
             });
 

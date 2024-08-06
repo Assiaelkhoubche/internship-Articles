@@ -11,6 +11,7 @@ import { FaInstagram } from "react-icons/fa";
 const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen]=useState(false);
+  const [isLogin, setIsLogin]=useState(false)
 
   const logoutAndLogin=()=>{
        localStorage.clear();
@@ -19,6 +20,7 @@ const Navbar = () => {
   
   const registerAndLogout=()=>{
      localStorage.clear();
+     setIsLogin(true);
      return <Register />
   } 
   
@@ -77,7 +79,7 @@ const Navbar = () => {
                             onClick={registerAndLogout}
                             className='bg-n-1 px-3 pb-1  rounded-[5px] hover:bg-n-2 hover:text-n-1 duration-500 ease-in '
                         >
-                                Sign up
+                                {!isLogin?'sign up':'logout'}
                         </button>
                     </Link>
             </div>

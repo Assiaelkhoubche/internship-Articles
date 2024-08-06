@@ -20,4 +20,5 @@ urlpatterns=[
       path('articles/<str:pk>/update/', ArticleUpdateView.as_view(), name='article-update'),
       path('articles/<str:pk>/delete/',ArticleDeleteView.as_view(), name='article-delete') ,
       path('users/',UserListView.as_view(), name='users'),
+    #   path('users/create/',CreateUserView.as_view(), name='create-user' ),
 ]

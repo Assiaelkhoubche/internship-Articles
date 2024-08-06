@@ -11,6 +11,7 @@ import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Services from './pages/Services.jsx'
 import Register from './pages/Register.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 import Protected from './components/Protected.jsx'
 import Login from './pages/Login.jsx'
@@ -43,7 +44,10 @@ const router=createBrowserRouter([
       },
       {
         path:'about',
-        element:<About/>
+        element:(
+              <ProtectedRoute>
+                    <About/>
+              </ProtectedRoute>)
       },
       {
         path:"contact",
