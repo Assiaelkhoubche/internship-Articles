@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, Navigate, NavLink } from 'react-router-dom'
 import { navItem } from '../constants/constant'
-
+import Register from '../pages/Register'
 // icons
 import {FaBars,FaXmark} from "react-icons/fa6";
 import { IoLogoFacebook } from "react-icons/io5";
@@ -11,6 +11,16 @@ import { FaInstagram } from "react-icons/fa";
 const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen]=useState(false);
+
+  const logoutAndLogin=()=>{
+       localStorage.clear();
+       return <Navigate to='/login'/>
+  }
+  
+  const registerAndLogout=()=>{
+     localStorage.clear();
+     return <Register />
+  } 
   
   const toggleMenu=()=>{   
     setIsMenuOpen(!isMenuOpen);
@@ -63,7 +73,10 @@ const Navbar = () => {
            
             <div className='text-white font-medium'>
                     <Link to='/register'>
-                        <button className='bg-n-1 px-3 pb-1  rounded-[5px] hover:bg-n-2 hover:text-n-1 duration-500 ease-in '>
+                        <button 
+                            onClick={registerAndLogout}
+                            className='bg-n-1 px-3 pb-1  rounded-[5px] hover:bg-n-2 hover:text-n-1 duration-500 ease-in '
+                        >
                                 Sign up
                         </button>
                     </Link>

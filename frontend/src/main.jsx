@@ -12,6 +12,9 @@ import Contact from './pages/Contact.jsx'
 import Services from './pages/Services.jsx'
 import Register from './pages/Register.jsx'
 
+import Protected from './components/Protected.jsx'
+import Login from './pages/Login.jsx'
+
 
 
 const router=createBrowserRouter([
@@ -26,7 +29,11 @@ const router=createBrowserRouter([
       },
       {
         path:'articles',
-        element:<Articles/>,
+        element:(
+          <Protected>
+              <Articles/>
+          </Protected>
+        ),
         children:[
             {
               path:':id',
@@ -49,6 +56,10 @@ const router=createBrowserRouter([
       {
         path:'register',
         element:<Register/>
+      },
+      {
+        path:'login',
+        element:<Login/>
       },
       {
         path:"*",
