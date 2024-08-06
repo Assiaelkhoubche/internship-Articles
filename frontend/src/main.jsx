@@ -31,9 +31,9 @@ const router=createBrowserRouter([
       {
         path:'articles',
         element:(
-          <Protected>
+          <ProtectedRoute>
               <Articles/>
-          </Protected>
+          </ProtectedRoute>
         ),
         children:[
             {
@@ -44,10 +44,8 @@ const router=createBrowserRouter([
       },
       {
         path:'about',
-        element:(
-              <ProtectedRoute>
-                    <About/>
-              </ProtectedRoute>)
+        element:<About/>
+             
       },
       {
         path:"contact",

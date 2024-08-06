@@ -1,28 +1,31 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants/constant";
 import api from '../api'
 import {Navigate} from 'react-router-dom'
+import {jwtDecode} from 'jwt-decode'
 
 
 
 const ProtectedRoute = ({children}) => {
 
-    const [isAuthorized, setIsAuthorized]=useState(null);
+    const [isAuthorized, setIsAuthorized] = useState(null);
     
     useEffect(()=>{
-        auth().catch(()=>setIsAuthorized(false))
+        auth().catch(()=>setIsAuthorized(false));
     })
 
     const refreshToken = async ()=>{
-         const refreshToken=localeStorage.get(REFRESH_TOKEN);
+         const refreshToken=localStorage.getItem(REFRESH_TOKEN);
         try{
-            const res=await api.post('/api/token/refresh/',{
+            const res = await api.post('/api/token/refresh/',{
                 refresh:refreshToken
             });
 
-            if(res===200){
-                localeStorage.setItem(ACCESS_TOKEN, res.data.access)
-                setIsAuthorized(True);
+            if(res.status===200){
+                localStorage.setItem(ACCESS_TOKEN, res.data.access)
+                setIsAuthorized(true);
+                alert('success');
+
             }else{
                 setIsAuthorized(false);
             }
@@ -35,7 +38,8 @@ const ProtectedRoute = ({children}) => {
 
 
     const auth = async()=>{
-        const token= localeStorage.getItem(ACCESS_TOKEN);
+        
+        const token= localStorage.getItem(ACCESS_TOKEN);
 
         if(!token){
             setIsAuthorized(false);
@@ -62,7 +66,7 @@ const ProtectedRoute = ({children}) => {
     )
     }
 
-    return isAuthorized? children: <Navigate to='/login'/>
+    return isAuthorized? children : <Navigate to='/login'/>
 
 }
 

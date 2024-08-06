@@ -29,7 +29,9 @@ const BlogPage = () => {
   return (
     <div>
        {articles.map((item,index)=>(
-         <p key={index}>{item.title}</p>
+        <>
+            <p key={index}><h1>{index}</h1>: {item.title}</p>
+        </>
        ))}
     </div>
   )
