@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../api'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/constant';
 import LoadingIndicator from './LoadingIndicator';
+import useAuthenticated from '../hooks/useAuthenticated';
+
+
 
 const UserForm = ({route, method}) => {
 
@@ -11,7 +14,11 @@ const UserForm = ({route, method}) => {
     const [password, setPassword]=useState('');
     const [loading, setLoading]= useState(false);
 
+
+
     const navigate=useNavigate();
+    const {setIsAuthenticated}=useAuthenticated();
+
     const name=method==='login'?'Login':'Sign up'
     
     const handleSubmit=async (e)=>{
@@ -22,11 +29,14 @@ const UserForm = ({route, method}) => {
         try{
 
             const res= await api.post(route, {username, email, password});
+
             if(method==='login'){
 
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                setIsAuthenticated(true);
                 navigate('/');
+                
             }else{
                 navigate('/login')
             }
