@@ -8,16 +8,17 @@ const AuthButton = () => {
    
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate=useNavigate();
+
     useEffect(()=>{
               
        const token =localStorage.getItem(ACCESS_TOKEN);
-
+       console.log(token)
        if(token){
            try{
             const decoded=jwtDecode(token);
-
             const isTokenValid= decoded.exp*1000>Date.now();
             setIsAuthenticated(isTokenValid);
+            
            }catch(err){
              setIsAuthenticated(false)
            }
@@ -27,15 +28,16 @@ const AuthButton = () => {
     },[])
 
     const handleLogout=()=>{
-        
-       localStorage.clear();
+       localStorage.removeItem(ACCESS_TOKEN);
+       localStorage.removeItem(REFRESH_TOKEN);
         setIsAuthenticated(false);
         navigate('/');
 
     }
     
     const handleRegistartion=()=>{
-        localStorage.clear();
+        localStorage.removeItem(ACCESS_TOKEN);
+        localStorage.removeItem(REFRESH_TOKEN);
         setIsAuthenticated(true);
         navigate('/register');
     }

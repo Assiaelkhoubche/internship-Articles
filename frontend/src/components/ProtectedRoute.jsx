@@ -66,7 +66,7 @@ const ProtectedRoute = ({children}) => {
     )
     }
 
-    return isAuthorized? children : <Navigate to='/login'/>
+    return isAuthorized? children : <Navigate to='/register'/>
 
 }
 

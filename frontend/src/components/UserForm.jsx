@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../api'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/constant';
 import LoadingIndicator from './LoadingIndicator';
@@ -78,7 +78,29 @@ const UserForm = ({route, method}) => {
           >
               {name}
           </button>
+          
+          {method==='register' ? (
+              
+              <p>
+                  if you have an account 
+                  <Link to='/login' className='text-n-1 mx-3 hover:underline font-bold '>
+                      Login
+                  </Link>
+              </p>
 
+          ):(
+              
+            <p>
+            if you didn't have an account 
+            <Link to='/register' className='text-n-1 font-bold mx-3 hover:underline'>
+                Sign up
+            </Link>
+        </p>
+
+
+          )
+          
+          }
 
      </form>
   )

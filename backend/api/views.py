@@ -73,6 +73,12 @@ class CreateListCategory(generics.ListCreateAPIView):
     def get_queryset(self):
         return Category.objects.all();
 
+class CategoryList(generics.ListAPIView):
+    serializer_class=CategorySerializer;
+    permission_classes=[IsAuthenticated];
+    
+    def get_queryset(self):
+        return Category.objects.all()
 
 
 class CreateListTage(generics.ListCreateAPIView):
@@ -83,3 +89,5 @@ class CreateListTage(generics.ListCreateAPIView):
         return Tag.objects.all();
 
 
+
+ 
