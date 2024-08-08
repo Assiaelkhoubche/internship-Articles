@@ -39,7 +39,6 @@ const UserForm = ({route, method}) => {
                dataRequest={username, email, password}
              }
 
-             console.log(`form data for=> ${method}: `, dataRequest);
             const res= await api.post(route, dataRequest);
 
             if(method==='login'){

@@ -13,7 +13,7 @@ export const AuthProvider = ({children}) => {
 
    useEffect(()=>{
 
-        auth();
+        auth().catch(()=>setIsAuthenticated(false));
 
    },[])
 
@@ -68,7 +68,7 @@ export const AuthProvider = ({children}) => {
 
      }catch(err){
         
-         console.log('error refresh token');
+         console.log('error refresh token',err);
          setIsAuthenticated(false);
 
      }
