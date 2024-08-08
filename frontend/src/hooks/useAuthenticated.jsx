@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { createContext, useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/constant';
@@ -6,7 +6,10 @@ import {jwtDecode} from 'jwt-decode';
 import api from '../api';
 
 
+export const AuthContext=createContext();
+
 const useAuthenticated = () => {
+
   const [isAuthenticated, setIsAuthenticated]=useState(false);
   const navigate=useNavigate();
 
@@ -21,6 +24,7 @@ const useAuthenticated = () => {
 
     if(!token){
         setIsAuthenticated(false);
+        return;
     }
     
     try{

@@ -4,12 +4,13 @@ import api from '../api'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/constant';
 import LoadingIndicator from './LoadingIndicator';
 import useAuthenticated from '../hooks/useAuthenticated';
+import { useAuth } from '../hooks/AuthProvider';
 
 
 
 const UserForm = ({route, method}) => {
 
-    const [username, setUserNmae]=useState('');
+    const [username, setUserName]=useState('');
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
     const [loading, setLoading]= useState(false);
@@ -17,7 +18,8 @@ const UserForm = ({route, method}) => {
 
 
     const navigate=useNavigate();
-    const {setIsAuthenticated}=useAuthenticated();
+
+    const {setIsAuthenticated}=useAuth();
 
     const name=method==='login'?'Login':'Sign up'
     
@@ -28,7 +30,17 @@ const UserForm = ({route, method}) => {
 
         try{
 
-            const res= await api.post(route, {username, email, password});
+           
+            let dataRequest 
+
+             if(method==='login'){
+               dataRequest={email,password}
+             }else{
+               dataRequest={username, email, password}
+             }
+
+             console.log(`form data for=> ${method}: `, dataRequest);
+            const res= await api.post(route, dataRequest);
 
             if(method==='login'){
 
@@ -62,7 +74,7 @@ const UserForm = ({route, method}) => {
               className='form-input'
               type="text"
               value={username}
-              onChange={(e)=>setUserNmae(e.target.value)}
+              onChange={(e)=>setUserName(e.target.value)}
               placeholder='username...'
               
               />

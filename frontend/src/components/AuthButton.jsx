@@ -3,16 +3,28 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/constant';
 import {jwtDecode} from 'jwt-decode'
 import { useNavigate } from 'react-router-dom';
 import Register from '../pages/Register';
-import useAuthenticated from '../hooks/useAuthenticated';
+import { useAuth } from '../hooks/AuthProvider';
 
 const AuthButton = () => {
    
-   const {isAuthenticated, handleLogout, handleRegistartion}=useAuthenticated();
-    
+ const {isAuthenticated,setIsAuthenticated}=useAuth(); 
+ const navigate=useNavigate(); 
+ 
+ const handleLogout = ()=>{
+    localStorage.clear();
+    setIsAuthenticated(false);
+    navigate('/');
 
+ }
+
+  const handleRegistartion=()=>{
+       localStorage.clear();
+       setIsAuthenticated(false);
+       navigate('/register');
+  }
   return (
     <div className='text-white font-medium'>
-         {isAuthenticated? (
+         {isAuthenticated ? (
              
              <button 
                 onClick={handleLogout}
