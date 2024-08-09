@@ -7,8 +7,8 @@ from djoser.serializers import UserCreateSerializer
 class CustomUserSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model=CustomUser
-        fields=['id','username','password','email', 'is_pro']
-        extra_kwargs={'password':{'write_only':True}}
+        fields=['id','username','password','email', 'is_pro','is_active']
+        extra_kwargs={'password':{'write_only':True}, 'is_active':{'read_only':True}}
     
 
 # class UserSerializer(ModelSerializer):

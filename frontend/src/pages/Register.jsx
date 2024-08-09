@@ -3,7 +3,7 @@ import UserForm from '../components/UserForm'
 const Register = () => {
   return (
     <div className='py-40'>
-          <UserForm route='/api/user/register/' method='register'/>
+          <UserForm route='/auth/users/' method='register'/>
     </div>
   )
 }

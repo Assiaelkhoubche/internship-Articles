@@ -13,7 +13,10 @@ const UserForm = ({route, method}) => {
     const [username, setUserName]=useState('');
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
+    const [confirmPassword, setConfirmPassword]=useState('');
+
     const [loading, setLoading]= useState(false);
+
 
 
 
@@ -36,7 +39,7 @@ const UserForm = ({route, method}) => {
              if(method==='login'){
                dataRequest={email,password}
              }else{
-               dataRequest={username, email, password}
+               dataRequest={username, email, password, re_password:confirmPassword}
              }
 
             const res= await api.post(route, dataRequest);
@@ -90,7 +93,18 @@ const UserForm = ({route, method}) => {
                  onChange={(e)=>setPassword(e.target.value)}
                  placeholder='password...'
           />
-          
+          {method==='register' && (
+                
+                <input  className='form-input'
+                        type='password'
+                        value={confirmPassword}
+                        onChange={(e)=>setConfirmPassword(e.target.value)}
+                        placeholder='confirm password...'
+                
+                    
+                />
+
+          )}
           {loading && <LoadingIndicator/>}
 
           <button

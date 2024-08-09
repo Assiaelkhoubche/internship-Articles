@@ -9,7 +9,10 @@ const articleCards = ({articles}) => {
              <div>
                 { item.picture?
                        (<img src={item.picture} alt="pic" 
-                                 className='w-full'/>
+                                 className=''
+                                 width={100}
+                                 height={100}
+                        />
                        ):
                        (<p>No image availabe</p>)}
              </div>

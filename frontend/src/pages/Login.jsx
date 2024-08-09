@@ -6,7 +6,7 @@ const Login = () => {
 
   return (
     <div className='py-40'>
-       <UserForm route='/api/token/' method='login'/>
+       <UserForm route='/auth/jwt/create/' method='login'/>
     </div>
   )
 }

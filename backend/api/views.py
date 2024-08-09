@@ -15,7 +15,7 @@ class CreateUserView(generics.CreateAPIView):
 
 class UserListView(generics.ListAPIView):
     serializer_class=CustomUserSerializer;
-    permission_classes=[IsUserManagerWithModelPermission];
+    permission_classes=[AllowAny];
 
     def get_queryset(self):
         return CustomUser.objects.all()
