@@ -1,20 +1,20 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .models import CustomUser, Article, Tag, Category
-from .serializer import UserSerializer, ArticleSerializer, TagSerializer, CategorySerializer
+from .serializer import CustomUserSerializer, ArticleSerializer, TagSerializer, CategorySerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .permissions import IsUserCustomer ,IsUserManager, IsUserManagerWithModelPermission
 
 
 class CreateUserView(generics.CreateAPIView):
-    serializer_class=UserSerializer;
+    serializer_class=CustomUserSerializer;
     permission_classes=[AllowAny];
     def get_queryset(self):
         return CustomUser.objects.all()
     
 
 class UserListView(generics.ListAPIView):
-    serializer_class=UserSerializer;
+    serializer_class=CustomUserSerializer;
     permission_classes=[IsUserManagerWithModelPermission];
 
     def get_queryset(self):

@@ -43,6 +43,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    'AUTH_HEADER_TYPES':('JWT',),
 }
 
 # Application definition
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'api',
 	'rest_framework',
     'corsheaders',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -101,6 +103,43 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Email details
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587 #TSL
+EMAIL_USE_TLS=True
+EMAIL_USE_SSL=False
+EMAIL_HOST_USER='assiaelkhoubche@gmail.com'
+EMAIL_HOST_PASSWORD='arem ypxn xqym cxke'
+
+#Djoser
+
+DJOSER={
+
+
+    'LOGIN_FIELD':'email',
+    'USER_CREATE_PASSWORD_RETYPE':True,
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
+    'SEND_CONFIRMATION_EMAIL':True,
+    'SEND_CONFIRMATION_EMAIL':True,
+    'SET_USERNAME_RETYPE':True,
+    'SET_PASSWORD_RETYPE':True,
+    'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}', #uid (User Id)
+    'USERNAME_RESET_CONFIRM_URL':'email/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL':'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL':True,
+    'SERIALIZERS':{
+        'user_create':'api.serializer.CustomUserSerializer',
+        'user':'api.serializer.CustomUserSerializer',
+        'user_delete':'Djoser.serializers.UserDeleteSerializer',
+
+    }
+
+
+}
+
 
 
 # Password validation
